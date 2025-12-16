@@ -16,12 +16,12 @@ class Settings(BaseSettings):
     Configurações gerais usadas na aplicação.
     '''
     API_V1_STR: str = "/api/v1"
-    DB_URL: str = f'''postgresql+asyncpg:
-                    //{os.getenv('DB_USER')}
-                    :{os.getenv('DB_PASSWORD')}
-                    @{os.getenv('DB_HOST')}
-                    :{os.getenv('DB_PORT')}
-                    /{os.getenv('DB_NAME')}'''
+    DB_URL: str = (
+        f"postgresql+asyncpg://"
+        f"{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}"
+        f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}"
+        f"/{os.getenv('DB_NAME')}"
+    )
 
     class Config:
         '''
