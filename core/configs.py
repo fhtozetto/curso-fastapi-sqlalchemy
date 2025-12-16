@@ -22,7 +22,6 @@ class Settings(BaseSettings):
                     @{os.getenv('DB_HOST')}
                     :{os.getenv('DB_PORT')}
                     /{os.getenv('DB_NAME')}'''
-    DBBaseModel = declarative_base()
 
     class Config:
         '''
@@ -31,4 +30,5 @@ class Settings(BaseSettings):
         case_sensitive = True
 
 
+DBBaseModel = declarative_base()
 setting = Settings()
