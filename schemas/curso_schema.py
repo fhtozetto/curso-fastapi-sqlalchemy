@@ -5,17 +5,30 @@ from typing import Optional
 from pydantic import BaseModel as SCBaseModel
 
 
-class CursoSchema(SCBaseModel):
+class CursoSchemaBase(SCBaseModel):
     '''
-    Docstring for CursoSchema
+    Base schema for Curso
     '''
-    id: Optional[int]
     titulo: str
     aulas: int
     horas: int
+
+
+class CursoSchema(CursoSchemaBase):
+    '''
+    Schema for Curso response
+    '''
+    id: Optional[int] = None
 
     class Config:
         '''
         Docstring for Config
         '''
-        orm_mode = True
+        from_attributes = True
+
+
+class CursoSchemaCreate(CursoSchemaBase):
+    '''
+    Schema for Curso creation
+    '''
+    pass

@@ -13,7 +13,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
 from models.curso_model import CursoModel
-from schemas.curso_schema import CursoSchema
+from schemas.curso_schema import CursoSchema, CursoSchemaCreate
 from core.deps import get_session
 
 
@@ -26,7 +26,7 @@ router = APIRouter()
     status_code=status.HTTP_201_CREATED
 )
 async def post_curso(
-    curso: CursoSchema,
+    curso: CursoSchemaCreate,
     db: AsyncSession = Depends(get_session)
 ):
     '''
@@ -76,6 +76,7 @@ async def get_curso(curso_id: int, db: AsyncSession = Depends(get_session)):
     :param db: Description
     :type db: AsyncSession
     '''
+    print('curso_id', curso_id)
     async with db as session:
         query = select(CursoModel).filter(CursoModel.id == curso_id)
         result = await session.execute(query)
